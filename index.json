@@ -1,0 +1,25 @@
+{
+  "title": "CKA 练习：HPA 自动扩缩容",
+  "description": "练习创建和修改 HorizontalPodAutoscaler",
+  "backend": {
+    "imageid": "kubernetes-kubeadm-1node"
+  },
+  "details": {
+    "intro": {
+      "text": "intro.md",
+      "background": "setup.sh" 
+    },
+    "steps": [
+      {
+        "title": "创建 HPA",
+        "text": "step1/text.md",
+        "verify": "step1/verify.sh"
+      },
+      {
+        "title": "修改缩容稳定窗口",
+        "text": "step2/text.md",
+        "verify": "step2/verify.sh"
+      }
+    ]
+  }
+}
