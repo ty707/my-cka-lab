@@ -1,21 +1,27 @@
 #!/bin/bash
 export KUBECONFIG=/etc/kubernetes/admin.conf
 
-# 检查 cpu requests 是否为 200m
-if ! grep -q "cpu: 200m" /etc/kubernetes/manifests/kube-scheduler.yaml; then
-  echo "Error: kube-scheduler CPU requests is not set to 200m."
+# 检查 HPA 是否存在
+if ! kubectl get hpa apache-server -n autoscale &> /dev/null; then
+  echo "Error: HPA 'apache-server' not found in namespace 'autoscale'."
   exit 1
 fi
 
-# 等待调度器启动
-sleep 5
-# 检查 Scheduler Pod 状态
-SCHEDULER_STATUS=$(kubectl -n kube-system get pod -l component=kube-scheduler -o jsonpath='{.items[0].status.phase}')
-
-if [ "$SCHEDULER_STATUS" != "Running" ]; then
-  echo "Hint: Configuration looks correct, but the Pod is not running yet. Please wait 1 minute and click CHECK again."
+# 检查 target CPU
+TARGET_CPU=$(kubectl get hpa apache-server -n autoscale -o jsonpath='{.spec.metrics[0].resource.target.averageUtilization}')
+if [ "$TARGET_CPU" != "50" ]; then
+  echo "Error: HPA target CPU utilization is not set to 50%."
   exit 1
 fi
 
-echo "Success"
+# 检查 Min/Max
+MIN_PODS=$(kubectl get hpa apache-server -n autoscale -o jsonpath='{.spec.minReplicas}')
+MAX_PODS=$(kubectl get hpa apache-server -n autoscale -o jsonpath='{.spec.maxReplicas}')
+
+if [ "$MIN_PODS" != "1" ] || [ "$MAX_PODS" != "4" ]; then
+  echo "Error: HPA minReplicas or maxReplicas is incorrect. Expected: min=1, max=4."
+  exit 1
+fi
+
+echo "Success: Verification passed! HPA is configured correctly."
 exit 0
