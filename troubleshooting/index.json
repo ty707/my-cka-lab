@@ -1,0 +1,28 @@
+{
+  "title": "CKA 故障排查：修复损坏的 K8s 集群",
+  "description": "修复错误的 etcd 配置和 Scheduler 资源限制",
+  "backend": {
+    "imageid": "kubernetes-kubeadm-1node"
+  },
+  "details": {
+    "intro": {
+      "text": "intro.md",
+      "background": "setup.sh"
+    },
+    "steps": [
+      {
+        "title": "修复 API Server 的 etcd 连接",
+        "text": "step1/text.md",
+        "verify": "step1/verify.sh"
+      },
+      {
+        "title": "修复 Scheduler 的 CPU 限制",
+        "text": "step2/text.md",
+        "verify": "step2/verify.sh"
+      }
+    ],
+    "finish": {
+      "text": "finish.md"
+    }
+  }
+}
