@@ -13,23 +13,24 @@ CURRENT_CPU=$(kubectl get hpa apache-server -n autoscale -o jsonpath='{.status.c
 
 # 如果 CPU 指标还没出来，直接失败并给提示
 if [ -z "$CURRENT_CPU" ]; then
-    echo "❌ 验证失败：Metrics Server 还没采集到 CPU 数据。"
-    echo "💡 提示：请确认是否执行了压测命令，并耐心等待 1-2 分钟。"
+    echo "Error: Metrics Server has not collected CPU data yet."
+    echo "Hint: Ensure the load generator is running, and wait 1-2 minutes."
     exit 1
 fi
 
 # 3. 核心判断：必须副本数 > 1，并且 CPU 指标 >= 50
 if [ "$CURRENT_REPLICAS" -gt 1 ] && [ "$CURRENT_CPU" -ge 50 ]; then
-    echo "✅ 验证通过！"
-    echo "🔥 当前 CPU 使用率为 ${CURRENT_CPU}% (已超过目标值 50%)"
-    echo "📈 当前副本数已自动扩容至 $CURRENT_REPLICAS 个。"
-    echo "🎉 你的 HPA 配置非常完美！"
+    echo "Success: Verification passed!"
+    echo "Current CPU usage: ${CURRENT_CPU}% (exceeds target 50%)"
+    echo "Current replicas auto-scaled to: $CURRENT_REPLICAS"
+    echo "Your HPA configuration is perfect!"
     exit 0
 else
-    echo "❌ 验证失败。"
-    echo "当前状态：CPU 使用率 ${CURRENT_CPU}%，副本数 ${CURRENT_REPLICAS}。"
-    echo "💡 提示："
-    echo "1. 请确认是否执行了 step2 的压测命令。"
-    echo "2. HPA 扩容需要时间，请等待 1-2 分钟后再点击 CHECK。"
+    echo "Error: Verification failed."
+    echo "Current state: CPU usage ${CURRENT_CPU}%, Replicas ${CURRENT_REPLICAS}."
+    echo "Hint:"
+    echo "1. Make sure the load generator from step2 is running."
+    echo "2. HPA scaling takes time. Please wait 1-2 minutes and click CHECK again."
     exit 1
 fi
+
