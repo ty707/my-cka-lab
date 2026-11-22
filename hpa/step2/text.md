@@ -1,11 +1,7 @@
-现在，请修改刚刚创建的 HPA，将**缩小稳定窗口（scaleDown stabilization window）**设置为 `30` 秒。
+# 模拟洪峰：触发自动扩容
+配置已经生效，现在我们需要验证 HPA 是否真的在工作。请在右侧终端启动一个压测 Pod，向 `apache-server` 发起高并发请求。
 
-**提示**：
-1. 使用 `kubectl edit hpa apache-server -n autoscale` 打开编辑器。
-2. 在 `spec` 下添加 `behavior` 字段。
-3. 你可以参考以下结构：
-
-```yaml
-  behavior:
-    scaleDown:
-      stabilizationWindowSeconds: 30
+**操作步骤**：
+1. 启动压测 Pod（使用持续请求打满 CPU）：
+```bash
+kubectl -n autoscale run load-generator --image=busybox --restart=Never -- /bin/sh -c "while true; do wget -q -O- http://apache-server; done"
