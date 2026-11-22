@@ -16,10 +16,13 @@
         "verify": "step1/verify.sh"
       },
       {
-        "title": "修改缩容稳定窗口",
+        "title": "模拟压测与弹性扩容",
         "text": "step2/text.md",
         "verify": "step2/verify.sh"
       }
-    ]
+    ],
+    "finish": {
+      "text": "finish.md"
+    }
   }
 }
