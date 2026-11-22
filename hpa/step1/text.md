@@ -12,3 +12,36 @@
 4. 最少保留 `1` 个副本，最多不超过 `4` 个副本。
 
 创建完成后，使用 `kubectl get hpa -n autoscale` 检查状态，点击 CHECK 验证。
+
+<details>
+<summary><b>👉 点击查看 Solution (参考答案)</b></summary>
+
+**1. 编写 YAML 文件 `hpa.yaml`：**
+```yaml
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: apache-server
+  namespace: autoscale
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: apache-server
+  minReplicas: 1
+  maxReplicas: 4
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 50
+```
+
+```bash
+
+kubectl apply -f hpa.yaml
+```
+
+</details>
