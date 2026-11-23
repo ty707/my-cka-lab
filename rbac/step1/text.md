@@ -1,8 +1,10 @@
-请在 `default` 命名空间下完成以下配置：
+# 🛠 任务：实施 RBAC 权限收敛
 
-1. 创建一个名为 `dev-sa` 的 ServiceAccount。
-2. 创建一个名为 `pod-reader` 的 Role，允许对 Pod 进行 `get`、`list`、`watch` 操作。
-3. 创建一个名为 `read-pods` 的 RoleBinding，将上述 Role 绑定到 `dev-sa`。
+请在 `default` 命名空间下，实施以下安全管控策略：
+
+1. 创建服务账号：`dev-sa`。
+2. 创建角色（Role）：`pod-reader`，仅允许对 Pod 资源执行 `get`、`list`、`watch` 操作（严禁包含 `delete` 或 `create`）。
+3. 创建角色绑定（RoleBinding）：`read-pods`，将上述 Role 绑定到 `dev-sa`。
 
 <details>
 <summary><b>👉 点击查看 Solution (参考答案)</b></summary>
