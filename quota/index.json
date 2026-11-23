@@ -1,0 +1,22 @@
+{
+  "title": "ResourceQuota 配额限制实战",
+  "description": "配置命名空间级资源配额并验证资源超限",
+  "backend": {
+    "imageid": "kubernetes-kubeadm-1node"
+  },
+  "details": {
+    "intro": {
+      "text": "intro.md"
+    },
+    "steps": [
+      {
+        "title": "创建 ResourceQuota",
+        "text": "step1/text.md",
+        "verify": "step1/verify.sh"
+      }
+    ],
+    "finish": {
+      "text": "finish.md"
+    }
+  }
+}
