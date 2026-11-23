@@ -1,5 +1,11 @@
-# 🌐 业务场景：统一流量入口
-你的团队部署了 `web-svc` 和 `api-svc` 两个服务。为了节省公网 IP，架构师要求使用 Ingress 作为统一入口，
-将 `app.example.com` 的流量转发到 `web-svc`，将 `api.example.com` 的流量转发到 `api-svc`。
+# 🌐 架构挑战：南北向流量治理
 
-*(注：后台已自动为你部署好这两个 Service 和 Ingress Controller)*
+**业务背景**：
+随着微服务架构的演进，你的团队在 K8s 中部署了多个独立应用（`web-app` 与 `api-app`）。为了降低云上公网 IP 成本并实现统一的 SSL 卸载与流量审计，架构组决定引入 Ingress Controller 作为集群的统一南北向流量入口。
+
+**当前环境**：
+- 后端服务 `web-svc` 与 `api-svc` 已就绪。
+- 集群已部署 Nginx Ingress Controller。
+
+**你的目标**：
+作为云原生工程师，你需要编写标准的 Ingress 声明式配置，实现基于域名的七层路由转发，打通外部用户与内部微服务的通信链路。
