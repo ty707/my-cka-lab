@@ -1,8 +1,11 @@
-请在 `default` 命名空间下创建一个名为 `my-ingress` 的 Ingress 资源。
+# 🛠 任务：配置七层路由规则
 
-**要求**：
-1. 将 `app.example.com` 的流量转发到 `web-svc` 的 `80` 端口。
-2. 将 `api.example.com` 的流量转发到 `api-svc` 的 `80` 端口。
+请在 `default` 命名空间下，创建一个名为 `my-ingress` 的 Ingress 资源。
+
+**路由规范**：
+1. 拦截来自 `app.example.com` 的流量，将其路由至 `web-svc` 的 `80` 端口。
+2. 拦截来自 `api.example.com` 的流量，将其路由至 `api-svc` 的 `80` 端口。
+*(注：请严格遵循 Kubernetes `networking.k8s.io/v1` API 版本的规范)*
 
 <details>
 <summary><b>👉 点击查看 Solution (参考答案)</b></summary>
