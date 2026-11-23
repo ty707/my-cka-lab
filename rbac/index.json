@@ -1,0 +1,22 @@
+{
+  "title": "RBAC 权限隔离与 ConfigMap 配置",
+  "description": "创建专用 ServiceAccount 并实施最小权限原则",
+  "backend": {
+    "imageid": "kubernetes-kubeadm-1node"
+  },
+  "details": {
+    "intro": {
+      "text": "intro.md"
+    },
+    "steps": [
+      {
+        "title": "配置 RBAC 与 ServiceAccount",
+        "text": "step1/text.md",
+        "verify": "step1/verify.sh"
+      }
+    ],
+    "finish": {
+      "text": "finish.md"
+    }
+  }
+}
