@@ -1,0 +1,27 @@
+{
+  "title": "持久化存储与 Pod 优先级",
+  "description": "配置 PVC 持久卷与 PriorityClass 高优先级调度",
+  "backend": {
+    "imageid": "kubernetes-kubeadm-1node"
+  },
+  "details": {
+    "intro": {
+      "text": "intro.md"
+    },
+    "steps": [
+      {
+        "title": "配置持久化存储",
+        "text": "step1/text.md",
+        "verify": "step1/verify.sh"
+      },
+      {
+        "title": "配置 Pod 优先级",
+        "text": "step2/text.md",
+        "verify": "step2/verify.sh"
+      }
+    ],
+    "finish": {
+      "text": "finish.md"
+    }
+  }
+}
