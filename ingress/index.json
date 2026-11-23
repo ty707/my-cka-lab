@@ -1,0 +1,23 @@
+{
+  "title": "Ingress 流量路由实战",
+  "description": "配置 Ingress 规则实现基于域名的流量分发",
+  "backend": {
+    "imageid": "kubernetes-kubeadm-1node"
+  },
+  "details": {
+    "intro": {
+      "text": "intro.md",
+      "background": "setup.sh"
+    },
+    "steps": [
+      {
+        "title": "创建 Ingress 路由规则",
+        "text": "step1/text.md",
+        "verify": "step1/verify.sh"
+      }
+    ],
+    "finish": {
+      "text": "finish.md"
+    }
+  }
+}
