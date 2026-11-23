@@ -1,7 +1,10 @@
+# 🛠 任务：实施命名空间资源配额
+
 1. 创建一个名为 `dev-namespace` 的 Namespace。
-2. 在 `dev-namespace` 中创建一个名为 `compute-quota` 的 ResourceQuota，要求：
-   - 整个命名空间最多只能请求（requests） `1` 个 CPU 和 `1Gi` 的内存。
-   - 整个命名空间最多只能创建 `2` 个 Pod。
+2. 在该命名空间中创建一个名为 `compute-quota` 的 ResourceQuota，实施以下硬限制（Hard Limits）：
+   - CPU 总请求量（requests.cpu）：最多 `1` 核。
+   - 内存总请求量（requests.memory）：最多 `1Gi`。
+   - Pod 总数：最多 `2` 个。
 
 <details>
 <summary><b>👉 点击查看 Solution (参考答案)</b></summary>
